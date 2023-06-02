@@ -28,8 +28,7 @@ return new class extends Migration
             $table->unsignedBigInteger('endereco_id');
             $table->timestamps();
 
-            $table->foreign('endereco_id')->references('id')->on('enderecos');
-            $table->unique('endereco_id');
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete("cascade");;
         });
     }
 

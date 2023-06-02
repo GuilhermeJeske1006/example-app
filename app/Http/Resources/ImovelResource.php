@@ -5,9 +5,11 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Endereco;
+use App\Models\TipoImovel;
+use App\Models\ImovelImagem;
 
 
-class ImobiliariaResource extends JsonResource
+class ImovelResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +19,13 @@ class ImobiliariaResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        $endereco = Endereco::find($this->endereco_id);
-
         return [
             'nome_categoria' => $this->nome_categoria,
             'imoveis' => $this->imoveis->map(function ($imovel) {
+                $endereco = Endereco::find($imovel->endereco_id);
+                $tipo_imovel = TipoImovel::find($imovel->tipo_id);
+
+                
                 return [
                     'id' => $imovel->id,
                     'nome_imovel' => $imovel->nome_imovel,
@@ -36,10 +40,12 @@ class ImobiliariaResource extends JsonResource
                     'localizacao' => $imovel->localizacao,
                     'descricao' => $imovel->descricao,
                     'endereco' => $endereco,
+                    'tipo_imovel' => $tipo_imovel,
                     'imovel_imagem' => $imovel->ImovelImagem->toArray(),
                     'caracteristicas' => $imovel->ImovelCaracteristicas->toArray(),
                 ];
             }),
         ];
+        
     }
 }

@@ -25,4 +25,18 @@ class UserController extends Controller
             "message" => "student record created"
         ], 201);
       }
+
+      
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        User::delete($id);
+
+        return response()->json([
+            "message" => "Usuario deletado com sucesso"
+        ], 201);
+    }
 }

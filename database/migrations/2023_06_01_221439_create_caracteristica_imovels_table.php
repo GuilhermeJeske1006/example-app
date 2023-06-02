@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('nome_caracteristica');
             $table->unsignedBigInteger('imovel_id');
             $table->timestamps();
-            $table->foreign('imovel_id')->references('id')->on('imoveis');
-            $table->unique('imovel_id');
+            $table->foreign('imovel_id')->references('id')->on('imoveis')->onDelete("cascade");;
         });
     }
 
@@ -26,6 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('caracteristica_imovels');
+        Schema::table('caracteristica_imoveis', function (Blueprint $table) {
+            $table->dropForeign(['imovel_id']); // Correção: Use o método dropForeign com um array contendo o nome da coluna
+        });
+        Schema::dropIfExists('caracteristica_imoveis');
+
     }
 };

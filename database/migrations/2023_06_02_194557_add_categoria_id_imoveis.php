@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('imoveis', function (Blueprint $table) {
-            $table->unsignedBigInteger('tipo_id');
-
-            $table->foreign('tipo_id')->references('id')->on('tipo_imoveis')->onDelete("cascade");;
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete("cascade");;
 
         });
     }
@@ -25,9 +24,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('imoveis', function (Blueprint $table) {
-            $table->dropForeign(['tipo_id']); // Correção: Use o método dropForeign com um array contendo o nome da coluna
-            $table->dropColumn('tipo_id');
+            $table->dropForeign(['categoria_id']); // Correção: Use o método dropForeign com um array contendo o nome da coluna
+            $table->dropColumn('categoria_id');
         });
     }
-
 };

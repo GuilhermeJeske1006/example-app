@@ -23,8 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('imobiliaria_id');
             $table->timestamps();
 
-            $table->foreign('imobiliaria_id')->references('id')->on('imobiliarias');
-            $table->unique('imobiliaria_id');
+            $table->foreign('imobiliaria_id')->references('id')->on('imobiliarias')->onDelete("cascade");;
         });
     }
 

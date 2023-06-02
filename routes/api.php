@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImobiliariaController;
+use App\Http\Controllers\ImovelController;
+
 
 
 /*
@@ -23,11 +26,18 @@ use App\Http\Controllers\UserController;
 //usuario
 Route::get('/user', [UserController::class, 'index']);
 Route::post('/user', [UserController::class, 'create']);
+Route::delete('/user', [UserController::class, 'destroy']);
 
 
 //imobiliaria
-Route::get('/imobiliaria', [UserController::class, 'index']);
-Route::post('/imobiliaria', [UserController::class, 'create']);
+Route::get('/imobiliaria', [ImobiliariaController::class, 'index']);
+Route::get('/imobiliaria/{id}', [ImobiliariaController::class, 'show']);
+Route::post('/imobiliaria', [ImobiliariaController::class, 'create']);
+
+//Imovel
+Route::get('/imovel/{id_imobi}', [ImovelController::class, 'index']);
+Route::get('/imovel/{id_imobi}/{id_imovel}', [ImovelController::class, 'show']);
+
 
 
 

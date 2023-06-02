@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome_categoria', 100);
+        Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('imobiliaria_id');
-            $table->timestamps();
-
             $table->foreign('imobiliaria_id')->references('id')->on('imobiliarias')->onDelete("cascade");;
+
         });
     }
 
@@ -26,6 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categorias');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['imobiliaria_id']); // Correção: Use o método dropForeign com um array contendo o nome da coluna
+            $table->dropColumn('imobiliaria_id');
+        });
     }
+    
 };
