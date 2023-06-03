@@ -19,27 +19,30 @@ class ImobiliariaResource extends JsonResource
 
         $endereco = Endereco::find($this->endereco_id);
 
+
         return [
-            'nome_categoria' => $this->nome_categoria,
-            'imoveis' => $this->imoveis->map(function ($imovel) {
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'creci' => $this->creci,
+            'logo' => $this->logo,
+            'email' => $this->email,
+            'whatsapp' => $this->whatsapp,
+            'instagram' => $this->instagram,
+            'facebook' => $this->facebook,
+            'telefone' => $this->telefone,
+            'cor' => $this->cor,
+            'descricao' => $this->descricao,
+            'palavras_chaves' => $this->palavras_chaves,
+            'titulo' => $this->titulo,
+            'endereco' => $endereco,
+            'usuarios' => $this->Usuarios->map(function ($user) {
                 return [
-                    'id' => $imovel->id,
-                    'nome_imovel' => $imovel->nome_imovel,
-                    'status' => $imovel->status,
-                    'valor' => $imovel->valor,
-                    'foto_capa' => $imovel->foto_capa,
-                    'banheiro' => $imovel->banheiro,
-                    'quarto' => $imovel->quarto,
-                    'garagem' => $imovel->garagem,
-                    'area_toal' => $imovel->area_toal,
-                    'video' => $imovel->video,
-                    'localizacao' => $imovel->localizacao,
-                    'descricao' => $imovel->descricao,
-                    'endereco' => $endereco,
-                    'imovel_imagem' => $imovel->ImovelImagem->toArray(),
-                    'caracteristicas' => $imovel->ImovelCaracteristicas->toArray(),
+                    'id' => $user->id,
+                    'nome' => $user->name,
+                    'email' => $user->email,
                 ];
             }),
+
         ];
     }
 }

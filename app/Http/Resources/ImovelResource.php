@@ -18,33 +18,26 @@ class ImovelResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $endereco = Endereco::find($this->endereco_id);
+        $tipo_imovel = TipoImovel::find($this->tipo_id);
 
         return [
-            'nome_categoria' => $this->nome_categoria,
-            'imoveis' => $this->imoveis->map(function ($imovel) {
-                $endereco = Endereco::find($imovel->endereco_id);
-                $tipo_imovel = TipoImovel::find($imovel->tipo_id);
-
-                
-                return [
-                    'id' => $imovel->id,
-                    'nome_imovel' => $imovel->nome_imovel,
-                    'status' => $imovel->status,
-                    'valor' => $imovel->valor,
-                    'foto_capa' => $imovel->foto_capa,
-                    'banheiro' => $imovel->banheiro,
-                    'quarto' => $imovel->quarto,
-                    'garagem' => $imovel->garagem,
-                    'area_toal' => $imovel->area_toal,
-                    'video' => $imovel->video,
-                    'localizacao' => $imovel->localizacao,
-                    'descricao' => $imovel->descricao,
-                    'endereco' => $endereco,
-                    'tipo_imovel' => $tipo_imovel,
-                    'imovel_imagem' => $imovel->ImovelImagem->toArray(),
-                    'caracteristicas' => $imovel->ImovelCaracteristicas->toArray(),
-                ];
-            }),
+            'id' => $this->id,
+            'nome_imovel' => $this->nome_imovel,
+            'status' => $this->status,
+            'valor' => $this->valor,
+            'foto_capa' => $this->foto_capa,
+            'banheiro' => $this->banheiro,
+            'quarto' => $this->quarto,
+            'garagem' => $this->garagem,
+            'area_toal' => $this->area_toal,
+            'video' => $this->video,
+            'localizacao' => $this->localizacao,
+            'descricao' => $this->descricao,
+            'endereco' => $endereco,
+            'tipo_imovel' => $tipo_imovel,
+            'imovel_imagem' => $this->ImovelImagem->toArray(),
+            'caracteristicas' => $this->ImovelCaracteristicas->toArray(),
         ];
         
     }

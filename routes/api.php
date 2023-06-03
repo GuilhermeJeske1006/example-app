@@ -35,8 +35,9 @@ Route::get('/imobiliaria/{id}', [ImobiliariaController::class, 'show']);
 Route::post('/imobiliaria', [ImobiliariaController::class, 'create']);
 
 //Imovel
-Route::get('/imovel/{id_imobi}', [ImovelController::class, 'index']);
-Route::get('/imovel/{id_imobi}/{id_imovel}', [ImovelController::class, 'show']);
+Route::get('/categoria_imoveis/{id_imobi}', [ImovelController::class, 'index']);
+Route::get('/imovel/{id_imovel}', [ImovelController::class, 'show']);
+Route::post('/imovel', [ImovelController::class, 'store']);
 
 
 

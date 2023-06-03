@@ -17,14 +17,14 @@ return new class extends Migration
             $table->string('creci');
             $table->string('logo');
             $table->string('email');
-            $table->string('whatsapp')->nullable();;
-            $table->string('instagram')->nullable();;
-            $table->string('facebook')->nullable();;
-            $table->integer('telefone')->nullable();;
+            $table->string('whatsapp')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+            $table->integer('telefone')->nullable();
             $table->string('cor');
-            $table->text('descricao')->nullable();;
-            $table->string('palavras_chaves')->nullable();;
-            $table->string('titulo')->nullable();;
+            $table->text('descricao')->nullable();
+            $table->string('palavras_chaves')->nullable();
+            $table->string('titulo')->nullable();
             $table->unsignedBigInteger('endereco_id');
             $table->timestamps();
 

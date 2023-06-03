@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        \App\Models\User::factory(10)->create();
-        \App\Models\Endereco::factory(10)->create();
-        \App\Models\Imobiliaria::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
+        // \App\Models\Endereco::factory(10)->create();
+        // \App\Models\Imobiliaria::factory(10)->create();
 
         \App\Models\TipoImovel::factory(10)->create();
         \App\Models\Imovel::factory(10)->create();

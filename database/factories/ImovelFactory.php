@@ -21,7 +21,7 @@ class ImovelFactory extends Factory
         return [
 
             'nome_imovel' => fake()->word,
-            'categoria_id' => 1,
+            'categoria_id' => 3,
             'status' => fake()->randomElement(['Disponível', 'Em andamento', 'Vendido']),
             'valor' => fake()->randomFloat(2, 1000, 1000000),
             'foto_capa' => fake()->imageUrl(),

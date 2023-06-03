@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use App\Models\Imovel;
+
 use App\Http\Resources\ImovelResource;
+use App\Http\Resources\CategoriaImovelResource;
+
 
 class ImovelController extends Controller
 {
@@ -16,7 +20,7 @@ class ImovelController extends Controller
     {
         $categoria = Categoria::where('imobiliaria_id', $id)->get();
 
-        return ImovelResource::collection($categoria);
+        return CategoriaImovelResource::collection($categoria);
 
     }
 
@@ -33,14 +37,19 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Imovel::create($request->all());
+    
+        return response()->json([
+            "message" => "Imovel cadastrada com sucesso"
+        ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(int $id_imobiliaria, int $id_imovel)
-    {
+    public function show(int $id_imovel)
+    {        
+        return ImovelResource::make(Imovel::find($id_imovel));
 
     }
 
